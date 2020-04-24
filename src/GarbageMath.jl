@@ -59,7 +59,15 @@ Base.:(-)(x::XKCDNumber{N}, y::XKCDNumber{M}) where {N, M} = XKCDNumber{2*(N +̂
 
 Base.:(/)(x::XKCDNumber{N}, y::XKCDNumber{M}) where {N, M} = XKCDNumber{100*(N +̂ M)}(x.n / y.n)
 
-Base.:(*)(x::XKCDNumber{N}, y::Number)  where {N} = y == 0 ? Precise(0) : XKCDNumber{N + 1}(x.n * y)
+Base.:(*)(x::XKCDNumber{N}, y::Number)  where {N} = y == 0 ? Precise(0) : XKCDNumber{N}(x.n * y)
 Base.:(*)(x::Number, y::XKCDNumber) = y * x
+
+Base.abs(x::XKCDNumber{N}) where {N} = XKCDNumber{N}(abs(x.n))
+Base.isnan(x::XKCDNumber) = isnan(x.n)
+Base.isinf(x::XKCDNumber) = isinf(x.n)
+Base.Float64(x::XKCDNumber{N}) where {N} = Float64(x.n)  
+
+Base.AbstractFloat(x::XKCDNumber{N}) where {N} = AbstractFloat(x.n)
+Base.real(x::XKCDNumber{N}) where {N} = XKCDNumber{N}(real(x.n))
 
 end
