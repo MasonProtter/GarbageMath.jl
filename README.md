@@ -38,3 +38,5 @@ Much worse garbage number -10.0
 julia> Garbage(3) * 0
 Precise number 0
 ```
+
+PRs welcome! 
