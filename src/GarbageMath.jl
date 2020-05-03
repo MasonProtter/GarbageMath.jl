@@ -64,7 +64,7 @@ Base.:(*)(x::Number, y::XKCDNumber) = y * x
 
 Base.abs(x::XKCDNumber{N}) where {N} = XKCDNumber{N}(abs(x.n))
 Base.isnan(x::XKCDNumber) = isnan(x.n)
-Base.isinf(x::XKCDNumber) = isinf(x.n)
+Base.isinf(x::XKCDNumber) = abs(x.n) >= 3
 Base.Float64(x::XKCDNumber{N}) where {N} = Float64(x.n)  
 
 Base.AbstractFloat(x::XKCDNumber{N}) where {N} = AbstractFloat(x.n)
